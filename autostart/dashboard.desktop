@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Server Dashboard
+Exec=epiphany --new-window http://localhost:8080
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
