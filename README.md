@@ -1,27 +1,27 @@
-# 🚀 Low-Power Private Cloud Server & Immich Photo Backup
+# Low-Power Private Cloud Server & Immich Photo Backup
 
-A complete, production-ready guide and software bundle to convert a low-power **Acer Chromebook (C720/C730 - 2GB RAM)** and a **Seagate 2TB External Hard Drive** into a 24/7 self-hosted private cloud and automatic photo backup server with zero maintenance.
+A complete, production-ready guide and software bundle to convert a low-power Acer Chromebook (C720/C730 with 2GB RAM) and a Seagate 2TB External Hard Drive into a 24/7 self-hosted private cloud and automatic photo backup server with zero maintenance.
 
 ---
 
-## 📋 Client Requirements & Architecture Overview
+## Client Requirements & Architecture Overview
 
-* **Primary Use Case:** Automatic phone photo/video backup from iOS & Android devices anywhere in the world (4G/5G/Wi-Fi), and occasional web access from laptop.
+* **Primary Use Case:** Automatic phone photo/video backup from iOS and Android devices anywhere in the world (4G/5G/Wi-Fi), and occasional web access from laptop.
 * **Zero Maintenance Guarantee:** 
-  * Docker containers with `restart: unless-stopped` auto-start on boot/power recovery.
+  * Docker containers with `restart: unless-stopped` auto-start on boot and power recovery.
   * Heavy Machine Learning/AI containers removed to keep idle RAM under 450 MB on 2GB hardware.
   * Pinned container releases to prevent breaking database schema updates.
 * **Storage Architecture:**
   * **OS & PostgreSQL Database:** Stored on internal fast SSD (`/var/lib/immich/postgres`) to guarantee database lock stability and high speed.
-  * **Photos & 4K Videos:** Stored directly on the **Seagate 2TB NTFS Hard Drive** (`/mnt/storage/immich_library`).
+  * **Photos & 4K Videos:** Stored directly on the Seagate 2TB NTFS Hard Drive (`/mnt/storage/immich_library`).
 * **Client Experience:**
-  * Clean **GNOME Desktop** on screen with auto-login.
-  * Unified **Minimalist Glassmorphic Dashboard** showing live CPU temperature, Seagate 2TB SMART health condition, and instant 1-click photo gallery switcher.
+  * Clean GNOME Desktop on screen with auto-login.
+  * Unified Minimalist Glassmorphic Dashboard showing live CPU temperature, Seagate 2TB SMART health condition, and instant 1-click photo gallery switcher.
   * Easy Wi-Fi management directly from the top notification menu or Cockpit.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ├── docker-compose.yml            # Lean Immich deployment (No heavy ML container)
@@ -36,12 +36,12 @@ A complete, production-ready guide and software bundle to convert a low-power **
 
 ---
 
-## 🛠️ Step-by-Step Installation & Setup
+## Step-by-Step Installation & Setup
 
 ### 1. Hardware & BIOS Setup
-1. Enable **Developer Mode** (`Esc + Refresh + Power`, then `Ctrl + D`).
-2. Remove the physical **Write-Protect (WP) Screw** from the Chromebook motherboard.
-3. Boot into ChromeOS, open terminal (`Ctrl + Alt + T` → `shell`), and flash MrChromebox Full ROM UEFI firmware:
+1. Enable Developer Mode (`Esc + Refresh + Power`, then `Ctrl + D`).
+2. Remove the physical Write-Protect (WP) Screw from the Chromebook motherboard.
+3. Boot into ChromeOS, open terminal (`Ctrl + Alt + T` -> `shell`), and flash MrChromebox Full ROM UEFI firmware:
    ```bash
    cd; curl -LO mrchromebox.tech/firmware-util.sh
    sudo install -Dt /usr/local/bin -m 755 firmware-util.sh
@@ -92,7 +92,7 @@ A complete, production-ready guide and software bundle to convert a low-power **
 
 ---
 
-## 🔒 Security & Firewall (UFW) Configuration
+## Security & Firewall (UFW) Configuration
 
 Cockpit and SSH are strictly locked to local private subnets to prevent any public exposure:
 
@@ -109,9 +109,9 @@ sudo ufw enable
 
 ---
 
-## 🌍 How to Access and Upload from Anywhere (Outside Home / 4G / 5G)
+## How to Access and Upload from Anywhere (Outside Home / 4G / 5G)
 
-### Option A: Cloudflare Tunnel ⭐ *(Zero client friction)*
+### Option A: Cloudflare Tunnel (Recommended - Zero Client Friction)
 1. On your server, install Cloudflare Tunnel:
    ```bash
    curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
@@ -119,10 +119,10 @@ sudo ufw enable
    ```
 2. Route a public hostname (e.g., `https://photos.yourdomain.com`) to `http://localhost:2283`.
 3. **Client Setup:**
-   * Download the **Immich App** on iPhone (App Store) or Android (Play Store).
+   * Download the Immich App on iPhone (App Store) or Android (Play Store).
    * Server URL: `https://photos.yourdomain.com`
-   * Log in and enable **Background Backup**.
-   * Photos/videos upload automatically from anywhere on cellular data!
+   * Log in and enable Background Backup.
+   * Photos/videos upload automatically from anywhere on cellular data.
 
 ### Option B: Tailscale VPN
 1. Install Tailscale on the server: `curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up`
@@ -131,16 +131,16 @@ sudo ufw enable
 
 ---
 
-## 📱 Client Quick Reference Card
+## Client Quick Reference Card
 
 | Feature | Access Method |
 | :--- | :--- |
 | **Physical Chromebook Screen** | Integrated Dashboard with live temperature & 1-click Gallery switcher |
 | **Change Wi-Fi Network** | Click top-right notification bar on Chromebook, or open `https://<ip>:9090` |
-| **Upload Photos from Laptop** | Open `http://<ip>:2283` in Chrome/Edge → Drag & drop files |
+| **Upload Photos from Laptop** | Open `http://<ip>:2283` in Chrome/Edge -> Drag & drop files |
 | **Mobile Phone Photo Backup** | Official Immich App (iOS/Android) with Background Backup enabled |
 
 ---
 
-## 📄 License
-MIT License. Open-source and built with ❤️ using Immich, Ubuntu, and Docker.
+## License
+MIT License. Open-source and built using Immich, Ubuntu, and Docker.
